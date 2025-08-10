@@ -93,7 +93,7 @@ export const Portfolio: React.FC = () => {
     
     switch (section.id) {
       case 'hero':
-        return <HeroSection onScrollToNext={handleScrollToNext} />;
+        return <HeroSection onScrollToNext={handleScrollToNext} activeSection={activeSection} onSectionChange={handleSectionChange} />;
       case 'about':
         return <AboutSection />;
       case 'projects':
