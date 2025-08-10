@@ -2,95 +2,253 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Portfolio Design System - Dark Theme with Vibrant Gradients */
 
 @layer base {
   :root {
+    /* Core Background Colors */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --foreground: 220 13% 18%;
+    
+    /* Dark Theme Primary */
+    --background-dark: 220 13% 8%;
+    --foreground-dark: 210 40% 98%;
+    
+    /* Brand Colors - Vibrant Gradients */
+    --primary: 271 91% 65%;
+    --primary-glow: 271 100% 75%;
+    --secondary: 192 100% 67%;
+    --secondary-glow: 192 100% 80%;
+    --accent: 333 100% 70%;
+    --accent-glow: 333 100% 85%;
+    
+    /* Neutral Colors */
+    --neutral-50: 210 20% 98%;
+    --neutral-100: 220 14% 96%;
+    --neutral-200: 220 13% 91%;
+    --neutral-300: 216 12% 84%;
+    --neutral-400: 218 11% 65%;
+    --neutral-500: 220 9% 46%;
+    --neutral-600: 215 14% 34%;
+    --neutral-700: 217 19% 27%;
+    --neutral-800: 215 28% 17%;
+    --neutral-900: 220 39% 11%;
+    --neutral-950: 224 71% 4%;
+    
+    /* Glass Morphism */
+    --glass-bg: 220 13% 8% / 0.7;
+    --glass-border: 210 40% 98% / 0.1;
+    
+    /* Success/Error */
+    --success: 142 71% 45%;
+    --error: 0 84% 60%;
+    --warning: 38 92% 50%;
+    
+    /* Radius */
+    --radius: 1rem;
+    --radius-lg: 1.5rem;
+    --radius-xl: 2rem;
+    
+    /* Shadows & Glows */
+    --shadow-subtle: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+    --shadow-glow: 0 0 50px hsl(var(--primary) / 0.3);
+    --shadow-glow-lg: 0 0 100px hsl(var(--primary) / 0.4);
+    
+    /* Transitions */
+    --transition-fast: 0.15s ease-out;
+    --transition-normal: 0.3s ease-out;
+    --transition-slow: 0.5s ease-out;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: var(--background-dark);
+    --foreground: var(--foreground-dark);
+    --card: var(--neutral-900);
+    --card-foreground: var(--neutral-100);
+    --popover: var(--neutral-900);
+    --popover-foreground: var(--neutral-100);
+    --muted: var(--neutral-800);
+    --muted-foreground: var(--neutral-400);
+    --border: var(--neutral-800);
+    --input: var(--neutral-800);
+    --ring: var(--primary);
+  }
+  
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground overflow-x-hidden;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-neutral-900;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gradient-to-b from-primary to-secondary rounded-full;
+  }
+  
+  /* Custom Gradients */
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+  }
+  
+  .gradient-secondary {
+    background: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--secondary-glow)));
+  }
+  
+  .gradient-rainbow {
+    background: linear-gradient(135deg, 
+      hsl(var(--primary)), 
+      hsl(var(--secondary)), 
+      hsl(var(--accent))
+    );
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
+  }
+  
+  /* Glass Morphism */
+  .glass {
+    background: hsla(var(--glass-bg));
+    backdrop-filter: blur(20px);
+    border: 1px solid hsla(var(--glass-border));
+  }
+  
+  /* Glow Effects */
+  .glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .glow-lg {
+    box-shadow: var(--shadow-glow-lg);
+  }
+  
+  /* Text Glow */
+  .text-glow {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+  }
+  
+  /* Hover Glow */
+  .hover-glow {
+    transition: box-shadow var(--transition-normal);
+  }
+  
+  .hover-glow:hover {
+    box-shadow: var(--shadow-glow);
+  }
+}
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+@layer components {
+  /* Custom Button Variants */
+  .btn-hero {
+    @apply relative overflow-hidden rounded-xl bg-gradient-to-r from-primary to-secondary px-8 py-4 text-white font-semibold transition-all duration-300 hover:scale-105 hover:shadow-glow;
+  }
+  
+  .btn-hero::before {
+    @apply absolute inset-0 bg-gradient-to-r from-accent to-primary opacity-0 transition-opacity duration-300;
+    content: '';
+  }
+  
+  .btn-hero:hover::before {
+    @apply opacity-100;
+  }
+  
+  .btn-hero > * {
+    @apply relative z-10;
+  }
+  
+  /* Animated Borders */
+  .border-animated {
+    @apply relative overflow-hidden rounded-lg;
+  }
+  
+  .border-animated::before {
+    @apply absolute inset-0 rounded-lg;
+    content: '';
+    background: linear-gradient(45deg, transparent, hsl(var(--primary)), transparent);
+    animation: border-spin 3s linear infinite;
+  }
+  
+  .border-animated > * {
+    @apply relative z-10 h-full w-full rounded-lg bg-background p-1;
+  }
+  
+  /* Floating Animation */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .float-delayed {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: -2s;
+  }
+  
+  /* Pulse Animation */
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+}
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+@layer utilities {
+  /* Animation Keyframes */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(var(--primary) / 0.6);
+    }
+  }
+  
+  @keyframes border-spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  /* Responsive Typography */
+  .text-hero {
+    @apply text-4xl md:text-6xl lg:text-7xl font-bold leading-tight;
+  }
+  
+  .text-section {
+    @apply text-2xl md:text-3xl lg:text-4xl font-semibold;
+  }
+  
+  /* Responsive Spacing */
+  .section-padding {
+    @apply px-4 md:px-8 lg:px-16 py-16 md:py-24 lg:py-32;
   }
 }
 
