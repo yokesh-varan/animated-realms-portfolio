@@ -9,6 +9,7 @@ import { ProjectsSection } from './sections/ProjectsSection';
 import { SkillsSection } from './sections/SkillsSection';
 import { ArticlesSection } from './sections/ArticlesSection';
 import { ContactSection } from './sections/ContactSection';
+import { AbstractBackground } from './AbstractBackground';
 
 const sections = [
   { id: 'hero', component: HeroSection },
@@ -111,7 +112,10 @@ export const Portfolio: React.FC = () => {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-background text-foreground">
+      <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
+        {/* Abstract Background */}
+        <AbstractBackground variant={activeSection} />
+        
         {/* Theme Toggle */}
         <ThemeToggle />
         
