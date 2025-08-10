@@ -24,15 +24,15 @@ export const Portfolio: React.FC = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   const handleSectionChange = (sectionId: string) => {
-    if (sectionId === activeSection || isTransitioning) return;
+    if (sectionId === activeSection) return;
 
     setIsTransitioning(true);
+    setActiveSection(sectionId);
     
-    // Smooth scroll to section
+    // Reset transition state
     setTimeout(() => {
-      setActiveSection(sectionId);
       setIsTransitioning(false);
-    }, 300);
+    }, 100);
   };
 
   const handleScrollToNext = () => {
